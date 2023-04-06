@@ -23,19 +23,31 @@
                     <a class="nav-link" aria-current="page" href="{% url 'shop:product_list' %}">Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">All Authors</a>
+                    <a class="nav-link" href="#">About</a>
                 </li>
                 {% if user.is_authenticated %}
-                    <li><a class="nav-link" href="#">My Books</a></li>
+                    <div class="cart">
+                      {% with total_items=cart|length %}
+                          {% if cart|length > 0 %}
+                            Your cart:
+                            <a href="{% url "cart:cart_detail" %}">
+                              {{ total_items }} item{{ total_items|pluralize }},
+                              ${{ cart.get_total_price }}
+                            </a>
+                          {% else %}
+                            Your cart is empty.
+                          {% endif %}
+                        {% endwith %}
+                    </div>
 
                     {% if user.is_superuser %}
                     <li class="nav-item dropdown">
                          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">  Librarian Functions   </a>
+                       aria-expanded="false">  Store Functions   </a>
                     <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Add Author</a></li>
-                        <li><a class="dropdown-item" href="#">View Available Books</a></li>
-                        <li><a class="dropdown-item" href="#">Add Book</a></li>
+                            <li><a class="dropdown-item" href="#">Add Product</a></li>
+                        <li><a class="dropdown-item" href="#">View Available Products</a></li>
+                        <li><a class="dropdown-item" href="#">Add Category</a></li>
                     </ul>
 
                     </li>
@@ -46,19 +58,7 @@
             </ul>
 
         </div>
-        <div class="cart">
-          {% with total_items=cart|length %}
-              {% if cart|length > 0 %}
-                Your cart:
-                <a href="{% url "cart:cart_detail" %}">
-                  {{ total_items }} item{{ total_items|pluralize }},
-                  ${{ cart.get_total_price }}
-                </a>
-              {% else %}
-                Your cart is empty.
-              {% endif %}
-            {% endwith %}
-        </div>
+
     <!--Display Login/Logout right-justified in navbar -->
          <ul class="nav navbar-nav ml-auto">
         {% if user.is_authenticated %}

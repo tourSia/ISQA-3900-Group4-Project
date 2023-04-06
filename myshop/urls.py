@@ -7,10 +7,10 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('shop.urls', namespace='shop')),
     path('cart/', include('cart.urls', namespace='cart')),
     path('orders/', include('orders.urls', namespace='orders')),
     path('payment/', include('payment.urls', namespace='payment')),
-    path('', include('shop.urls', namespace='shop')),
     path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
 
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
