@@ -7,27 +7,82 @@
   <link href="{% static "css/base.css" %}" rel="stylesheet">
 </head>
 <body>
-  <div id="header">
-    <a href="/" class="logo">My shop</a>
-  </div>
-  <div id="subheader">
-    <div class="cart">
-      {% with total_items=cart|length %}
-          {% if cart|length > 0 %}
-            Your cart: 
-            <a href="{% url "cart:cart_detail" %}">
-              {{ total_items }} item{{ total_items|pluralize }},
-              ${{ cart.get_total_price }}
-            </a>
-          {% else %}
-            Your cart is empty.
-          {% endif %}
-        {% endwith %}
+
+
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div id="header">
+        <a href="/" class="logo">My shop</a>
     </div>
-  </div>
+  <div id="subheader">
+
+
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'shop:index' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'shop:product_list' %}">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">All Authors</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li><a class="nav-link" href="#">My Books</a></li>
+
+                    {% if user.is_superuser %}
+                    <li class="nav-item dropdown">
+                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">  Librarian Functions   </a>
+                    <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Add Author</a></li>
+                        <li><a class="dropdown-item" href="#">View Available Books</a></li>
+                        <li><a class="dropdown-item" href="#">Add Book</a></li>
+                    </ul>
+
+                    </li>
+                  {% endif %}
+
+                {% endif %}
+
+            </ul>
+
+        </div>
+        <div class="cart">
+          {% with total_items=cart|length %}
+              {% if cart|length > 0 %}
+                Your cart:
+                <a href="{% url "cart:cart_detail" %}">
+                  {{ total_items }} item{{ total_items|pluralize }},
+                  ${{ cart.get_total_price }}
+                </a>
+              {% else %}
+                Your cart is empty.
+              {% endif %}
+            {% endwith %}
+        </div>
+    <!--Display Login/Logout right-justified in navbar -->
+         <ul class="nav navbar-nav ml-auto">
+        {% if user.is_authenticated %}
+            <li><a class="nav-link" href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-in"></span>Logout</a>
+            </li>
+
+        {% else %}
+            <li>
+                <a class="nav-link" href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span>Login</a>
+            </li>
+
+            <li>
+                <a class="nav-link" href="{% url 'register' %}"><span class="glyphicon glyphicon-log-in"></span>Sign Up</a>
+            </li>
+
+        {% endif %}
+        </ul>
+
+    </div>
+  </nav>
   <div id="content">
     {% block content %}
     {% endblock %}
   </div>
 </body>
 </html>
+

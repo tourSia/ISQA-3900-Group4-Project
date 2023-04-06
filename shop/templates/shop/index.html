@@ -1,0 +1,17 @@
+{% extends 'shop/base.html' %}
+
+
+{% block content %}
+  <h1>FreshCo</h1>
+  <p>The store has the following categories of products :</p>
+  <ul>
+   <h1>{{ category.name }}</h1>
+        {% for product in products %}
+            <h2><a href="#">{{ product.name }}</a></h2>
+            <p>{{ product.description }}</p>
+            <p>{{ product.price }}</p>
+        {% endfor %}
+  </ul>
+
+    <p>You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}.</p>
+{% endblock %}

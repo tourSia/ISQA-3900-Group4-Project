@@ -145,10 +145,3 @@ Configuration.configure(
     BRAINTREE_PUBLIC_KEY,
     BRAINTREE_PRIVATE_KEY
 )
-
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'project0myclass@gmail.com'
-EMAIL_HOST_PASSWORD = 'ctncmqnhdudlolbw'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-SERVER_EMAIL = 'root@gmail.com'
