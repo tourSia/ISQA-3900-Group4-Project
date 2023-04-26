@@ -1,0 +1,12 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+  <h1>FreshCo </h1>
+  <p>The grocery store has the following products and reviews:</p>
+  <ul>
+    <li><strong>Products:</strong> {{ num_products }}</li>
+    <li><strong>Reviews:</strong> {{ num_reviews }}</li>
+  </ul>
+
+  <p>You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}</p>
+{% endblock %}

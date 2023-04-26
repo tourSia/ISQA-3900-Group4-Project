@@ -1,10 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import RegisterForm
 from django.contrib.auth.models import User,Group
-from django.core.mail import send_mail      #Password reset
-from django.contrib.auth.models import User #Password reset
-
-
+from django.core.mail import send_mail
 
 # Create your views here.
 def register(request):
@@ -15,7 +12,7 @@ def register(request):
             form.save()
             #get the new user info and set the group for this user to LibraryMember
             user = User.objects.get(username=uname)
-            lib_group = Group.objects.get(name='StoreMember')
+            lib_group = Group.objects.get(name='LibraryMember')
             user.groups.add(lib_group)
             user.save()
             return redirect('login')
@@ -24,8 +21,7 @@ def register(request):
     else:
         form = RegisterForm()
 
-        return render(request, "../register/register.html", {"form": form})
-
+    return render(request, "register.html", {"form": form})
 
 #add send e - mail confirmation
 # set up the subject, message, and user’s email address
@@ -43,4 +39,3 @@ def passwordreset(request):
         sent = True
     except:
         print("Error sending e-mail")
-
