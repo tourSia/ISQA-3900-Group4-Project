@@ -137,8 +137,8 @@ LOGIN_REDIRECT_URL = '/'
 
 # email stuff
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'django.grocery.test@gmail.com'
-EMAIL_HOST_PASSWORD = 'sloisvlfhwktektz'
+EMAIL_HOST_USER = 'project0myclass@gmail.com'
+EMAIL_HOST_PASSWORD = 'ctncmqnhdudlolbw'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 SERVER_EMAIL = 'root@gmail.com'
