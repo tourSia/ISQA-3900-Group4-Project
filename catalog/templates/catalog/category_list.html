@@ -2,15 +2,18 @@
 
 {% block content %}
   <h1>Category List</h1>
-  {% if category_list %}
+ <h5>
+     {% if category_list %}
   <ul>
     {% for category in category_list %}
       <li>
         <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
-      </li>
+      </li> <br>
+
     {% endfor %}
   </ul>
+
   {% else %}
     <p>There are no categories in the store.</p>
-  {% endif %}
+  {% endif %}</h5>
 {% endblock %}
